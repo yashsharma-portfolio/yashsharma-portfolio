@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Sharma | Data Analyst Portfolio</title>
+<meta name="description" content="Yash Sharma's Data Analyst portfolio showcasing Excel, Python and Power BI skills.">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+:root{--bg:#0b1020;--panel:#121a2e;--text:#eef2ff;--muted:#a6b1c8;--accent:#65e6c3;--line:#27334d}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Arial,sans-serif}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{width:min(1080px,92%);margin:auto}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#0b1020ee;backdrop-filter:blur(12px);z-index:5}
+nav{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:16px 0;flex-wrap:wrap}
+.brand{font-weight:800;font-size:20px;color:white}
+nav .links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+nav .links a{color:var(--text)}
+button,.btn{border:0;border-radius:9px;padding:10px 15px;background:var(--accent);color:#07131a;font-weight:700;cursor:pointer;display:inline-block}
+button.secondary,.btn.secondary{background:#202c43;color:var(--text);border:1px solid var(--line)}
+button.danger{background:#632c3c;color:white}
+.hero{padding:90px 0 75px;display:grid;grid-template-columns:1.5fr 1fr;gap:35px;align-items:center}
+.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800}
+h1{font-size:clamp(38px,6vw,66px);line-height:1.08;letter-spacing:-2px;margin:15px 0}
+h2{font-size:30px;line-height:1.2;margin:0 0 20px}
+h3{margin:0 0 10px}
+p{color:var(--muted)}
+.hero p{font-size:18px;max-width:620px}
+.hero-card,.card,.project,.contact-card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:24px}
+.hero-card{padding:30px}
+.hero-card .big{font-size:52px;font-weight:800;color:var(--accent)}
+section{padding:55px 0}
+.section-intro{max-width:680px;margin-top:-8px;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.skill{padding:20px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
+.skill strong{display:block;margin-bottom:5px}
+.project{display:flex;flex-direction:column;gap:12px}
+.project p{margin:0;white-space:pre-wrap}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-size:12px;border:1px solid #34564f;color:var(--accent);padding:4px 9px;border-radius:20px}
+.project-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.preview{width:100%;height:480px;background:#fff;border:1px solid var(--line);border-radius:9px}
+input,textarea,select{width:100%;padding:11px;background:#0b1020;color:var(--text);border:1px solid var(--line);border-radius:8px;font:inherit}
+label{display:block;margin:12px 0 5px;font-size:14px;color:var(--muted)}
+form{display:grid;gap:8px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#adminPanel{margin:25px auto;padding:22px;border:1px solid var(--accent);border-radius:15px;background:var(--panel)}
+.hidden{display:none!important}
+.notice{font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:720px){.hero{grid-template-columns:1fr;padding:55px 0}.grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}nav .links{gap:11px}section{padding:38px 0}h2{font-size:26px}}
+</style>
+</head>
+<body>
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#home">YS<span style="color:var(--accent)">.</span> Portfolio</a>
+    <div class="links">
+      <a href="#about">About</a><a href="#skills">Skills</a>
+      <a href="#projects">Projects</a><a href="#contact">Contact</a>
+    </div>
+    <button class="secondary" id="loginBtn">Admin Login</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">Aspiring Data Analyst</div>
+      <h1>Hi, I'm <span style="color:var(--accent)" id="heroName">Yash Sharma</span>.</h1>
+      <p id="heroIntro">I enjoy turning raw data into clear insights that help businesses make better decisions. I work with Excel, Python and Power BI to clean, analyse and visualise data.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:25px">
+        <a class="btn" href="#projects">Explore My Projects</a>
+        <a class="btn secondary" href="#contact">Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="eyebrow">My Focus</div>
+      <div class="big">Data →</div>
+      <h3>Insights that matter</h3>
+      <p>Data cleaning · Business analysis · Interactive dashboards</p>
+      <div class="tags"><span class="tag">Excel</span><span class="tag">Python</span><span class="tag">Power BI</span></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="eyebrow">Get to know me</div>
+    <h2>About Me</h2>
+    <div class="card"><p id="aboutText">I am an aspiring Data Analyst with an interest in analytical thinking, data cleaning, business insights and dashboard development. I am building practical projects to strengthen my skills and solve real-world business problems with data.</p></div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">What I work with</div>
+    <h2>Skills & Tools</h2>
+    <p class="section-intro">Tools I use to prepare data, find patterns and communicate insights.</p>
+    <div class="grid">
+      <div class="skill"><strong>Advanced Excel</strong><p>Data cleaning, formulas, PivotTables, charts and dashboards.</p></div>
+      <div class="skill"><strong>Python</strong><p>Pandas, NumPy, data transformation and exploratory analysis.</p></div>
+      <div class="skill"><strong>Power BI</strong><p>Data modelling, visualisations, KPIs and interactive reports.</p></div>
+    </div>
+    <div id="extraSkills" class="tags" style="margin-top:18px"></div>
+  </section>
+
+  <section id="projects">
+    <div class="eyebrow">Selected work</div>
+    <h2>My Projects</h2>
+    <p class="section-intro">My project showcase will grow as I add more work. Check back for data analysis and dashboard projects.</p>
+    <div class="grid" id="projectList">
+      <article class="project">
+        <div class="eyebrow">Project 01</div><h3>Food Delivery Sales Dashboard</h3>
+        <p>Analyse order performance, sales trends and delivery outcomes with a business-focused dashboard.</p>
+        <div class="tags"><span class="tag">Power BI</span><span class="tag">Data Visualisation</span></div>
+      </article>
+      <article class="project">
+        <div class="eyebrow">Project 02</div><h3>Food Delivery Data Cleaning</h3>
+        <p>Prepare messy data by handling missing values, inconsistent text, dates and data types.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span></div>
+      </article>
+      <article class="project">
+        <div class="eyebrow">Project 03</div><h3>Sales Analysis in Excel</h3>
+        <p>Explore sales performance with PivotTables, charts, KPIs and an easy-to-read dashboard.</p>
+        <div class="tags"><span class="tag">Excel</span><span class="tag">Dashboard</span></div>
+      </article>
+    </div>
+    <p class="notice" style="margin-top:16px">These are starter examples. Replace them with your real project details when you're ready.</p>
+  </section>
+
+  <section id="contact">
+    <div class="eyebrow">Let's connect</div>
+    <h2>Contact Me</h2>
+    <div class="contact-card">
+      <p>I'm open to Data Analyst internship opportunities and projects where I can learn and contribute.</p>
+      <p>Email: <a id="emailLink" href="mailto:yash.sharma11oct@gmail.com">yash.sharma11oct@gmail.com</a></p>
+      <p>LinkedIn: <a id="linkedinLink" href="https://www.linkedin.com/in/yash-sharma-262a75432/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn profile ↗</a></p>
+    </div>
+  </section>
+
+  <section id="adminPanel" class="hidden">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center">
+      <div><div class="eyebrow">Private admin area</div><h2 style="margin:5px 0">Manage Portfolio</h2><p>Only your authorised admin account should see these controls.</p></div>
+      <button class="secondary" id="logoutBtn">Log out</button>
+    </div>
+    <h3>Edit Profile</h3>
+    <form id="profileForm">
+      <div class="form-grid">
+        <div><label for="pName">Name</label><input id="pName" required></div>
+        <div><label for="pTitle">Professional title</label><input id="pTitle" required></div>
+      </div>
+      <label for="pIntro">Introduction</label><textarea id="pIntro" rows="3"></textarea>
+      <label for="pAbout">About me</label><textarea id="pAbout" rows="4"></textarea>
+      <label for="pSkills">Additional skills (comma separated)</label><input id="pSkills" placeholder="Power Query, DAX, SQL">
+      <div class="form-grid">
+        <div><label for="pEmail">Contact email</label><input id="pEmail" type="email" required></div>
+        <div><label for="pLinkedin">LinkedIn URL</label><input id="pLinkedin" type="url"></div>
+      </div>
+      <button type="submit">Save Profile</button>
+    </form>
+    <hr style="border-color:var(--line);margin:30px 0">
+    <h3 id="projectFormTitle">Add a Project</h3>
+    <form id="projectForm">
+      <input id="projectId" type="hidden">
+      <label for="projectTitle">Project title</label><input id="projectTitle" required>
+      <label for="projectDescription">Description</label><textarea id="projectDescription" rows="3" required></textarea>
+      <label for="projectTools">Tools (comma separated)</label><input id="projectTools" placeholder="Python, Pandas, Excel">
+      <label for="projectUrl">Public project or dashboard URL (optional)</label><input id="projectUrl" type="url" placeholder="https://...">
+      <label for="projectFile">Upload PDF, Excel or image (private storage)</label><input id="projectFile" type="file" accept=".pdf,.xlsx,.xls,.csv,.png,.jpg,.jpeg,.webp">
+      <p class="notice">Private uploads are not made public. A later preview feature can create short-lived access links for visitors.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="submit">Save Project</button><button type="button" class="secondary" id="cancelEditBtn">Cancel Edit</button></div>
+    </form>
+    <p id="adminMessage" class="notice" role="status"></p>
+    <h3 style="margin-top:30px">Your Saved Projects</h3>
+    <div id="adminProjects" class="grid"></div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="year"></span> Yash Sharma · Data Analyst Portfolio</span><span>Built with a focus on data and insights.</span></div></footer>
+
+<script>
+/* STEP 1: Replace these three placeholders before publishing. */
+const SUPABASE_URL = "https://gipjluebbkyqljrgihum.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_44cpC8_6M4aiFvmOllZrRA_p9XLnwPC";
+const ADMIN_USER_ID = "c634c54b-acbf-4a34-b069-244967a8f754";
+
+const $ = id => document.getElementById(id);
+const configReady = SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_")
+  && ADMIN_USER_ID.includes("-")
+  && !ADMIN_USER_ID.includes("PASTE_");
+let db = null, currentUser = null, profile = null, projects = [];
+
+function escapeHTML(value="") {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function message(text) { $("adminMessage").textContent = text; }
+function isAdmin() { return !!currentUser && currentUser.id === ADMIN_USER_ID; }
+
+function showProfile(p) {
+  profile = p || profile;
+  if (!profile) return;
+  $("heroName").textContent = profile.name || "Yash Sharma";
+  $("heroIntro").textContent = profile.intro || "";
+  $("aboutText").textContent = profile.about || "";
+  $("emailLink").textContent = profile.email || "";
+  $("emailLink").href = "mailto:" + (profile.email || "");
+  const li = $("linkedinLink");
+  li.href = profile.linkedin || "#";
+  li.textContent = "Visit my LinkedIn profile ↗";
+  $("extraSkills").innerHTML = (profile.skills || []).map(s =>
+    `<span class="tag">${escapeHTML(s)}</span>`).join("");
+}
+function renderProjects() {
+  const host = $("projectList");
+  if (!projects.length) {
+    host.innerHTML = `<article class="project"><h3>Projects coming soon</h3><p>My project details will be added here.</p></article>`;
+    return;
+  }
+  host.innerHTML = projects.map(p => `
+    <article class="project">
+      <div class="eyebrow">Data Analytics Project</div>
+      <h3>${escapeHTML(p.title)}</h3>
+      <p>${escapeHTML(p.description)}</p>
+      <div class="tags">${(p.tools||[]).map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join("")}</div>
+      ${p.project_url ? `<div class="project-actions"><a class="btn secondary" href="${escapeHTML(p.project_url)}" target="_blank" rel="noopener noreferrer">View Project ↗</a></div>` : ""}
+    </article>`).join("");
+}
+function renderAdminProjects() {
+  $("adminProjects").innerHTML = projects.map(p => `
+    <article class="project"><h3>${escapeHTML(p.title)}</h3>
+    <p>${escapeHTML(p.description)}</p>
+    <div class="project-actions">
+      <button class="secondary" data-edit="${p.id}">Edit</button>
+      <button class="danger" data-delete="${p.id}">Delete</button>
+    </div></article>`).join("") || "<p>No saved projects yet.</p>";
+  $("adminProjects").querySelectorAll("[data-edit]").forEach(b => b.onclick = () => editProject(b.dataset.edit));
+  $("adminProjects").querySelectorAll("[data-delete]").forEach(b => b.onclick = () => deleteProject(b.dataset.delete));
+}
+async function loadData() {
+  if (!db) return;
+  const {data:p, error:pe} = await db.from("portfolio_profile").select("*").eq("id",1).maybeSingle();
+  if (!pe && p) { showProfile(p); }
+  const {data:pr, error:pre} = await db.from("portfolio_projects").select("*").order("created_at",{ascending:false});
+  if (!pre && pr) { projects = pr; renderProjects(); }
+}
+async function updateAuth() {
+  const {data} = await db.auth.getSession();
+  currentUser = data.session?.user || null;
+  $("adminPanel").classList.toggle("hidden", !isAdmin());
+  $("loginBtn").textContent = isAdmin() ? "Admin Active" : "Admin Login";
+  if (isAdmin()) {
+    fillProfileForm();
+    renderAdminProjects();
+  }
+}
+function fillProfileForm() {
+  if (!profile) return;
+  $("pName").value = profile.name || "";
+  $("pTitle").value = profile.title || "";
+  $("pIntro").value = profile.intro || "";
+  $("pAbout").value = profile.about || "";
+  $("pSkills").value = (profile.skills || []).join(", ");
+  $("pEmail").value = profile.email || "";
+  $("pLinkedin").value = profile.linkedin || "";
+}
+function resetProjectForm() {
+  $("projectForm").reset(); $("projectId").value = "";
+  $("projectFormTitle").textContent = "Add a Project";
+}
+function editProject(id) {
+  const p = projects.find(x => x.id === id); if (!p || !isAdmin()) return;
+  $("projectId").value = p.id; $("projectTitle").value = p.title;
+  $("projectDescription").value = p.description;
+  $("projectTools").value = (p.tools || []).join(", ");
+  $("projectUrl").value = p.project_url || "";
+  $("projectFormTitle").textContent = "Edit Project";
+  $("projectForm").scrollIntoView({behavior:"smooth"});
+}
+async function deleteProject(id) {
+  if (!isAdmin() || !confirm("Delete this project?")) return;
+  const {error} = await db.from("portfolio_projects").delete().eq("id",id);
+  if (error) return message(error.message);
+  projects = projects.filter(p => p.id !== id);
+  renderProjects(); renderAdminProjects(); message("Project deleted.");
+}
+$("loginBtn").onclick = async () => {
+  if (!db) return alert("Website setup is not complete yet. Add the Supabase settings in the code first.");
+  if (isAdmin()) { $("adminPanel").scrollIntoView({behavior:"smooth"}); return; }
+  const email = prompt("Admin email:");
+  if (!email) return;
+  const password = prompt("Admin password:");
+  if (!password) return;
+  const {error} = await db.auth.signInWithPassword({email,password});
+  if (error) { alert("Login failed. Check your admin email and password."); return; }
+  await updateAuth();
+  if (isAdmin()) $("adminPanel").scrollIntoView({behavior:"smooth"});
+  else { await db.auth.signOut(); alert("This account is not authorised as the portfolio admin."); }
+};
+$("logoutBtn").onclick = async () => { await db.auth.signOut(); currentUser=null; await updateAuth(); };
+$("profileForm").onsubmit = async e => {
+  e.preventDefault(); if (!isAdmin()) return;
+  const data = {
+    id:1, name:$("pName").value.trim(), title:$("pTitle").value.trim(),
+    intro:$("pIntro").value.trim(), about:$("pAbout").value.trim(),
+    skills:$("pSkills").value.split(",").map(s=>s.trim()).filter(Boolean),
+    email:$("pEmail").value.trim(), linkedin:$("pLinkedin").value.trim()
+  };
+  const {error} = await db.from("portfolio_profile").update(data).eq("id",1);
+  if (error) return message(error.message);
+  showProfile(data); message("Profile saved successfully.");
+};
+$("projectForm").onsubmit = async e => {
+  e.preventDefault(); if (!isAdmin()) return;
+  const id = $("projectId").value;
+  const data = {
+    title:$("projectTitle").value.trim(),
+    description:$("projectDescription").value.trim(),
+    tools:$("projectTools").value.split(",").map(s=>s.trim()).filter(Boolean),
+    project_url:$("projectUrl").value.trim(),
+    file_path:""
+  };
+  const file = $("projectFile").files[0];
+  if (file) {
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+    const path = `${currentUser.id}/${crypto.randomUUID()}-${safeName}`;
+    const {error:uploadError} = await db.storage.from("portfolio-files").upload(path,file,{upsert:false});
+    if (uploadError) return message("File upload failed: " + uploadError.message);
+    data.file_path = path;
+  } else if (id) {
+    data.file_path = projects.find(p=>p.id===id)?.file_path || "";
+  }
+  let result;
+  if (id) result = await db.from("portfolio_projects").update(data).eq("id",id);
+  else result = await db.from("portfolio_projects").insert(data);
+  if (result.error) return message(result.error.message);
+  resetProjectForm(); await loadData(); renderAdminProjects(); message("Project saved successfully.");
+};
+$("cancelEditBtn").onclick = resetProjectForm;
+$("year").textContent = new Date().getFullYear();
+
+if (configReady && window.supabase) {
+  db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+  db.auth.onAuthStateChange(() => setTimeout(updateAuth,0));
+  loadData().then(updateAuth);
+} else {
+  $("loginBtn").title = "Add your Supabase publishable key and admin UUID in the code to activate admin features.";
+}
+</script>
+</body>
+</html>
