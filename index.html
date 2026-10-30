@@ -56,8 +56,179 @@ footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-s
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(max-width:720px){.hero{grid-template-columns:1fr;padding:55px 0}.grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}nav .links{gap:11px}section{padding:38px 0}h2{font-size:26px}}
 </style>
+  <style>
+#welcome-screen {
+    position: fixed;
+    inset: 0;
+    background: #080b16;
+    color: white;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.background-text {
+    position: absolute;
+    font-size: clamp(45px, 10vw, 130px);
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    letter-spacing: 8px;
+    white-space: nowrap;
+}
+
+.welcome-content {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    animation: enter 1.5s ease;
+}
+
+.boy {
+    margin: 0 auto 25px;
+    animation: boyEnter 1.5s ease;
+}
+
+.boy-head {
+    position: relative;
+    margin: auto;
+    width: 100px;
+    height: 105px;
+    background: #e9ad7c;
+    border-radius: 48% 48% 45% 45%;
+}
+
+.hair {
+    position: absolute;
+    top: -8px;
+    left: 5px;
+    width: 90px;
+    height: 38px;
+    background: #20202b;
+    border-radius: 50% 50% 20% 20%;
+}
+
+.face {
+    padding-top: 45px;
+    color: #20202b;
+}
+
+.eyes {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 12px;
+    padding-left: 10px;
+}
+
+.smile {
+    display: block;
+    font-size: 28px;
+}
+
+.boy-body {
+    position: relative;
+    width: 135px;
+    height: 100px;
+    margin: -2px auto 0;
+    background: #5865d8;
+    border-radius: 35px 35px 12px 12px;
+}
+
+.arm {
+    position: absolute;
+    top: -20px;
+    right: -42px;
+    font-size: 42px;
+    transform-origin: bottom left;
+    animation: wave 0.7s ease-in-out infinite alternate;
+}
+
+.laptop {
+    position: absolute;
+    bottom: 12px;
+    left: 42px;
+    font-size: 42px;
+}
+
+.welcome-content h1 {
+    font-size: clamp(25px, 4vw, 42px);
+    margin: 15px 0;
+}
+
+.welcome-content p {
+    color: #aeb8d5;
+    font-size: 17px;
+}
+
+.welcome-content button {
+    margin-top: 20px;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #a3ff12;
+    color: #080b16;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes wave {
+    from { transform: rotate(-25deg); }
+    to { transform: rotate(25deg); }
+}
+
+@keyframes boyEnter {
+    from { opacity: 0; transform: translateY(100px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes enter {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#welcome-screen.hide {
+    animation: exitScreen 0.8s forwards;
+    pointer-events: none;
+}
+
+@keyframes exitScreen {
+    to { opacity: 0; visibility: hidden; }
+}
+</style>
 </head>
 <body>
+  <!-- Welcome Animation Start -->
+<div id="welcome-screen">
+
+    <div class="background-text">DATA ANALYST</div>
+
+    <div class="welcome-content">
+
+        <div class="boy">
+            <div class="boy-head">
+                <div class="hair"></div>
+                <div class="face">
+                    <span class="eyes">● ●</span>
+                    <span class="smile">⌣</span>
+                </div>
+            </div>
+
+            <div class="boy-body">
+                <div class="arm">👋</div>
+                <div class="laptop">💻</div>
+            </div>
+        </div>
+
+        <h1>Welcome to the Data Analyst Portfolio</h1>
+        <p>Turning Data into Meaningful Insights</p>
+
+        <button onclick="closeWelcome()">Explore Portfolio</button>
+
+    </div>
+</div>
+<!-- Welcome Animation End -->
 <header>
   <nav class="wrap">
     <a class="brand" href="#home">YS<span style="color:var(--accent)">.</span> Portfolio</a>
@@ -394,6 +565,12 @@ if (configReady && window.supabase) {
   loadData().then(updateAuth);
 } else {
   $("loginBtn").title = "Add your Supabase publishable key and admin UUID in the code to activate admin features.";
+}
+</script>
+  <script>
+function closeWelcome() {
+    document.getElementById("welcome-screen")
+        .classList.add("hide");
 }
 </script>
 </body>
