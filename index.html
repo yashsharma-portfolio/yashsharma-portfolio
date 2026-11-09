@@ -55,28 +55,56 @@ form{display:grid;gap:8px}
 footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(max-width:720px){.hero{grid-template-columns:1fr;padding:55px 0}.grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}nav .links{gap:11px}section{padding:38px 0}h2{font-size:26px}}
-</style>
-        <div class="boy">
-            <div class="boy-head">
-                <div class="hair"></div>
-                <div class="face">
-                    <span class="eyes">● ●</span>
-                    <span class="smile">⌣</span>
-                </div>
-            </div>
 
-            <div class="boy-body">
-                <div class="arm">👋</div>
-                <div class="laptop">💻</div>
+
+/* ===== SIMPLE CARTOON WELCOME ANIMATION ===== */
+#welcome-screen{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;text-align:center;background:radial-gradient(circle at 50% 35%,#203b60 0%,#101d34 48%,#080e1c 100%);transition:opacity .7s ease,visibility .7s ease}
+#welcome-screen.hide{opacity:0;visibility:hidden;pointer-events:none}
+.welcome-bg-text{position:absolute;top:12%;left:0;width:100%;font-size:clamp(38px,10vw,110px);font-weight:900;letter-spacing:8px;color:rgba(255,255,255,.07);white-space:nowrap;pointer-events:none}
+.boy{position:relative;width:230px;height:245px;margin:0 auto 12px;animation:boyEnter 1.35s cubic-bezier(.2,.8,.2,1) both}
+.boy-head{position:absolute;top:5px;left:72px;width:90px;height:100px;z-index:2}
+/* Neater modern side-swept hairstyle */
+.hair{position:absolute;top:0;left:3px;width:84px;height:39px;background:linear-gradient(145deg,#26364b 0%,#111b2b 58%,#080f1b 100%);border-radius:58% 48% 28% 24%;z-index:2;box-shadow:inset 8px 5px 0 rgba(255,255,255,.08)}
+.hair::before{content:"";position:absolute;top:-7px;left:12px;width:48px;height:24px;background:linear-gradient(145deg,#34465e,#172337 70%);border-radius:90% 20% 55% 15%;transform:rotate(-13deg)}
+.hair::after{content:"";position:absolute;top:8px;right:-2px;width:28px;height:24px;background:#172337;border-radius:10% 90% 35% 65%;transform:rotate(18deg)}
+.face{position:absolute;top:18px;left:8px;width:75px;height:78px;background:#f2bd91;border-radius:45% 45% 48% 48%}
+.eyes{position:absolute;top:25px;left:18px;color:#172033;font-size:13px;letter-spacing:8px}
+.smile{position:absolute;top:43px;left:30px;color:#8b3f36;font-size:24px}
+.boy-body{position:absolute;top:100px;left:52px;width:130px;height:125px;background:#38a6a0;border-radius:35px 35px 12px 12px}
+.arm{position:absolute;top:-30px;right:-30px;font-size:42px;transform-origin:12px 35px;animation:handWave .55s ease-in-out 1.35s infinite alternate}
+.laptop{position:absolute;left:-48px;top:42px;font-size:55px}
+.welcome-title{position:relative;z-index:1;color:#fff;font-size:clamp(25px,5vw,44px);line-height:1.2;margin:10px 18px}
+.welcome-subtitle{position:relative;z-index:1;color:#65e6c3;margin:8px 15px 22px}
+.welcome-explore{position:relative;z-index:2;padding:13px 28px;border-radius:30px;background:#65e6c3;color:#07131a;font-size:16px}
+@keyframes boyEnter{from{transform:translateX(-520px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes handWave{from{transform:rotate(-25deg)}to{transform:rotate(25deg)}}
+@media(max-width:600px){.welcome-bg-text{letter-spacing:3px}.boy{transform:scale(.88);margin-bottom:0}}
+
+</style>
+</head>
+<body>
+
+<!-- WELCOME ANIMATION -->
+<div id="welcome-screen">
+    <div class="welcome-bg-text">DATA ANALYST</div>
+    <div class="boy">
+        <div class="boy-head">
+            <div class="hair"></div>
+            <div class="face">
+                <span class="eyes">● ●</span>
+                <span class="smile">⌣</span>
             </div>
         </div>
-
-        <h1>Welcome to the Data Analyst Portfolio</h1>
-        <p>Turning Data into Meaningful Insights</p>
-
-        <button onclick="closeWelcome()">Explore Portfolio</button>
-
+        <div class="boy-body">
+            <div class="arm">👋</div>
+            <div class="laptop">💻</div>
+        </div>
     </div>
+    <h1 class="welcome-title">Welcome to the Portfolio of a Data Analyst</h1>
+    <p class="welcome-subtitle">Turning Data into Meaningful Insights</p>
+    <button class="welcome-explore" onclick="closeWelcome()">Explore Portfolio →</button>
+</div>
+
 <header>
   <nav class="wrap">
     <a class="brand" href="#home">YS<span style="color:var(--accent)">.</span> Portfolio</a>
