@@ -56,246 +56,27 @@ footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-s
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(max-width:720px){.hero{grid-template-columns:1fr;padding:55px 0}.grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}nav .links{gap:11px}section{padding:38px 0}h2{font-size:26px}}
 </style>
-  <style>
-#welcome-screen {
-    position: fixed;
-    inset: 0;
-    background: #080b16;
-    color: white;
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
+        <div class="boy">
+            <div class="boy-head">
+                <div class="hair"></div>
+                <div class="face">
+                    <span class="eyes">● ●</span>
+                    <span class="smile">⌣</span>
+                </div>
+            </div>
 
-.background-text {
-    position: absolute;
-    font-size: clamp(45px, 10vw, 130px);
-    font-weight: 900;
-    color: rgba(255,255,255,0.06);
-    letter-spacing: 8px;
-    white-space: nowrap;
-}
+            <div class="boy-body">
+                <div class="arm">👋</div>
+                <div class="laptop">💻</div>
+            </div>
+        </div>
 
-.welcome-content {
-    position: relative;
-    text-align: center;
-    padding: 20px;
-    animation: enter 1.5s ease;
-}
+        <h1>Welcome to the Data Analyst Portfolio</h1>
+        <p>Turning Data into Meaningful Insights</p>
 
-.boy {
-    margin: 0 auto 25px;
-    animation: boyEnter 1.5s ease;
-}
+        <button onclick="closeWelcome()">Explore Portfolio</button>
 
-.boy-head {
-    position: relative;
-    margin: auto;
-    width: 100px;
-    height: 105px;
-    background: #e9ad7c;
-    border-radius: 48% 48% 45% 45%;
-}
-
-.hair {
-    position: absolute;
-    top: -8px;
-    left: 5px;
-    width: 90px;
-    height: 38px;
-    background: #20202b;
-    border-radius: 50% 50% 20% 20%;
-}
-
-.face {
-    padding-top: 45px;
-    color: #20202b;
-}
-
-.eyes {
-    display: block;
-    font-size: 13px;
-    letter-spacing: 12px;
-    padding-left: 10px;
-}
-
-.smile {
-    display: block;
-    font-size: 28px;
-}
-
-.boy-body {
-    position: relative;
-    width: 135px;
-    height: 100px;
-    margin: -2px auto 0;
-    background: #5865d8;
-    border-radius: 35px 35px 12px 12px;
-}
-
-.arm {
-    position: absolute;
-    top: -20px;
-    right: -42px;
-    font-size: 42px;
-    transform-origin: bottom left;
-    animation: wave 0.7s ease-in-out infinite alternate;
-}
-
-.laptop {
-    position: absolute;
-    bottom: 12px;
-    left: 42px;
-    font-size: 42px;
-}
-
-.welcome-content h1 {
-    font-size: clamp(25px, 4vw, 42px);
-    margin: 15px 0;
-}
-
-.welcome-content p {
-    color: #aeb8d5;
-    font-size: 17px;
-}
-
-.welcome-content button {
-    margin-top: 20px;
-    padding: 13px 30px;
-    border: none;
-    border-radius: 30px;
-    background: #a3ff12;
-    color: #080b16;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-@keyframes wave {
-    from { transform: rotate(-25deg); }
-    to { transform: rotate(25deg); }
-}
-
-@keyframes boyEnter {
-    from { opacity: 0; transform: translateY(100px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes enter {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-#welcome-screen.hide {
-    animation: exitScreen 0.8s forwards;
-    pointer-events: none;
-}
-
-@keyframes exitScreen {
-    to { opacity: 0; visibility: hidden; }
-}
-</style>
-<style>
-/* Professional Welcome Screen */
-
-#welcome-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    background: #020817;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    animation: welcomeFadeIn 1s ease;
-}
-
-.welcome-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    animation: welcomeZoom 1.5s ease;
-}
-
-/* Invisible clickable area over the button in the image */
-
-.welcome-explore {
-    position: absolute;
-    left: 65%;
-    top: 71%;
-    width: 23%;
-    height: 12%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    color: transparent;
-    font-size: 0;
-}
-
-@keyframes welcomeFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes welcomeZoom {
-    from {
-        opacity: 0;
-        transform: scale(0.94);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-#welcome-screen.hide {
-    animation: welcomeFadeOut 0.8s forwards;
-    pointer-events: none;
-}
-
-@keyframes welcomeFadeOut {
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-@media (max-width: 600px) {
-    .welcome-image {
-        object-fit: contain;
-    }
-
-    .welcome-explore {
-        left: 64%;
-        top: 70%;
-        width: 25%;
-        height: 13%;
-    }
-}
-</style>
-</head>
-<body>
-<!-- Professional Welcome Animation Start -->
-<div id="welcome-screen">
-
-    <img
-        src="./welcome-screen.png"
-        alt="Welcome to Data Analyst Portfolio"
-        class="welcome-image"
-    >
-
-    <button class="welcome-explore" onclick="closeWelcome()">
-        Explore Portfolio
-    </button>
-
-</div>
-<!-- Professional Welcome Animation End -->
+    </div>
 <header>
   <nav class="wrap">
     <a class="brand" href="#home">YS<span style="color:var(--accent)">.</span> Portfolio</a>
