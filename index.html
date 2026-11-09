@@ -64,9 +64,44 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .boy{position:relative;width:230px;height:245px;margin:0 auto 12px;animation:boyEnter 1.35s cubic-bezier(.2,.8,.2,1) both}
 .boy-head{position:absolute;top:5px;left:72px;width:90px;height:100px;z-index:2}
 /* Neater modern side-swept hairstyle */
-.hair{position:absolute;top:0;left:3px;width:84px;height:39px;background:linear-gradient(145deg,#26364b 0%,#111b2b 58%,#080f1b 100%);border-radius:58% 48% 28% 24%;z-index:2;box-shadow:inset 8px 5px 0 rgba(255,255,255,.08)}
-.hair::before{content:"";position:absolute;top:-7px;left:12px;width:48px;height:24px;background:linear-gradient(145deg,#34465e,#172337 70%);border-radius:90% 20% 55% 15%;transform:rotate(-13deg)}
-.hair::after{content:"";position:absolute;top:8px;right:-2px;width:28px;height:24px;background:#172337;border-radius:10% 90% 35% 65%;transform:rotate(18deg)}
+.hair {
+    position: absolute;
+    top: -5px;
+    left: 2px;
+    width: 86px;
+    height: 43px;
+    background: linear-gradient(145deg, #29364b, #101827);
+    border-radius: 65% 45% 20% 20%;
+    z-index: 3;
+    transform: rotate(-5deg);
+    box-shadow: inset 8px 5px 0 rgba(255,255,255,0.08);
+}
+
+/* Side-swept front hair */
+.hair::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 2px;
+    width: 58px;
+    height: 23px;
+    background: #17243a;
+    border-radius: 10% 90% 20% 80%;
+    transform: rotate(-17deg);
+}
+
+/* Textured side hair */
+.hair::after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    right: 2px;
+    width: 25px;
+    height: 31px;
+    background: #202d43;
+    border-radius: 50% 50% 35% 35%;
+    transform: rotate(12deg);
+}
 .face{position:absolute;top:18px;left:8px;width:75px;height:78px;background:#f2bd91;border-radius:45% 45% 48% 48%}
 .eyes{position:absolute;top:25px;left:18px;color:#172033;font-size:13px;letter-spacing:8px}
 .smile{position:absolute;top:43px;left:30px;color:#8b3f36;font-size:24px}
